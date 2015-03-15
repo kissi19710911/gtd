@@ -1,0 +1,8 @@
+.metadata/
+*/target/
+*/.settings/
+*/.checkstyle
+*/.project
+*/.classpath
+*l.class
+*.class

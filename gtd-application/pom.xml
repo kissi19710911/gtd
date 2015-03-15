@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>hu.ikiss.gtd</groupId>
+	<artifactId>gtd-application</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>ear</packaging>
+	<dependencies>
+		<dependency>
+			<type>ejb</type>
+			<groupId>hu.ikiss.gtd</groupId>
+			<artifactId>gtd-dao</artifactId>
+		</dependency>
+		<dependency>
+			<type>ejb</type>
+			<groupId>hu.ikiss.gtd</groupId>
+			<artifactId>gtd-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>hu.ikiss.gtd</groupId>
+			<artifactId>gtd-web</artifactId>
+							<version>0.0.1-SNAPSHOT</version>
+			<type>war</type>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+
+
+
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<earSourceDirectory>gtd</earSourceDirectory>
+					<version>6</version>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<modules>
+						<ejbModule>
+							<groupId>hu.ikiss.gtd</groupId>
+							<artifactId>gtd-dao</artifactId>
+							<bundleFileName>gtd-dao-${project.version}.jar</bundleFileName>
+						</ejbModule>
+						<ejbModule>
+							<groupId>hu.ikiss.gtd</groupId>
+							<artifactId>gtd-server</artifactId>
+							<bundleFileName>gtd-server-${project.version}.jar</bundleFileName>
+						</ejbModule>
+					</modules>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<type>ejb</type>
+				<groupId>hu.ikiss.gtd</groupId>
+				<artifactId>gtd-dao</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<type>ejb</type>
+				<groupId>hu.ikiss.gtd</groupId>
+				<artifactId>gtd-server</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>hu.ikiss.gtd</groupId>
+				<artifactId>gtd-web</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>
