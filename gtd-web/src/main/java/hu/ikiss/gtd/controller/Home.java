@@ -1,5 +1,7 @@
 package hu.ikiss.gtd.controller;
 
+import java.sql.SQLException;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +16,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 public class Home {
   @Autowired
-  @Qualifier("jdbc/gtdDB")
+//  @Qualifier("java:comp/env/jdbc/gtdDB")
   private DataSource dataSource;
 
   @RequestMapping(method = RequestMethod.GET)
   public String printWelcome(ModelMap model) {
-
+    try {
+      dataSource.getConnection().commit();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
     model.addAttribute("message", "Spring 3 MVC Hello World");
     return "hello";
 

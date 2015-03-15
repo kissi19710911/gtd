@@ -17,7 +17,7 @@ public class MainConfig {
         DataSource dataSource = null;
         JndiTemplate jndi = new JndiTemplate();
         try {
-            dataSource = (DataSource) jndi.lookup("java:comp/env/jdbc/gtdDB");
+            dataSource = (DataSource) jndi.lookup("jdbc/gtdDB");
         } catch (NamingException e) {
         }
         return dataSource;
