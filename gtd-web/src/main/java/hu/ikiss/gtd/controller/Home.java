@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 public class Home {
   @Autowired
-//  @Qualifier("java:comp/env/jdbc/gtdDB")
+  //@Qualifier("java:comp/env/jdbc/gtdDB")
   private DataSource dataSource;
 
   @RequestMapping(method = RequestMethod.GET)

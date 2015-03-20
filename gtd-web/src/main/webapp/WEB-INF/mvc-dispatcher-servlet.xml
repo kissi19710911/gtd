@@ -18,5 +18,10 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
+ 	<context:component-scan base-package="hu.ikiss.gtd" />
+	<bean id="dbDataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/gtdDB" />
+	</bean>
  
 </beans>
