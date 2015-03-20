@@ -13,6 +13,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 //import hu.ikiss.gtd.server.domain.Task;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Stateless
 @Local(TaskDAOLocal.class)
 @Remote(TaskDAORemote.class)

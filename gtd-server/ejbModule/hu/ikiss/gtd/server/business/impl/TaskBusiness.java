@@ -11,7 +11,10 @@ import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
-@Stateless /*(mappedName = "TaskBusiness",name = "java:global/TaskBusiness")*/
+import org.springframework.stereotype.Component;
+
+@Component
+@Stateless 
 @Local(TaskBusinessLocal.class)
 @Remote(TaskBusinessRemote.class)
 @EJB(name="TaskBusiness",beanInterface=TaskBusinessLocal.class)

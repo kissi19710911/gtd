@@ -11,6 +11,9 @@ import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Stateless
 @Local(ProjectBusinessLocal.class)
 @Remote(ProjectBusinessRemote.class)

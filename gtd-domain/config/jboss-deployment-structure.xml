@@ -1,5 +1,0 @@
-<deployment>
-	<dependencies>
-		<module name="org.hibernate" export="true" />
-	</dependencies>
-</deployment>      

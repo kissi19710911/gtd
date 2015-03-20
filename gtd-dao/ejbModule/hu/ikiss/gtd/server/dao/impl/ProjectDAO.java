@@ -12,6 +12,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Stateless
 @Local(ProjectDAOLocal.class)
 @Remote(ProjectDAORemote.class)

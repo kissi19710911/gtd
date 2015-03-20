@@ -21,7 +21,6 @@ public class Startup extends HttpServlet {
      */
     public Startup() {
         super();
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
     }
 
 	/**

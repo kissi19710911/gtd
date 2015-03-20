@@ -4,6 +4,9 @@
 	<groupId>gtd-serverClient</groupId>
 	<artifactId>gtd-serverClient</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<spring.version>3.0.5.RELEASE</spring.version>
+	</properties>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
@@ -35,21 +38,15 @@
 		<dependency>
 			<groupId>hu.ikiss.gtd</groupId>
 			<artifactId>gtd-interfaces</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.as</groupId>
-            <artifactId>jboss-as-ejb-client-bom</artifactId>
-            <version>7.1.1.Final</version>
-            <type>pom</type>
-        </dependency>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>hu.ikiss.gtd</groupId>
 				<artifactId>gtd-interfaces</artifactId>
-				<version>0.0.1-snapshot</version>
+				<version>${project.version}</version>
 			</dependency>
-  	</dependencies>
+		</dependencies>
 	</dependencyManagement>
 </project>
