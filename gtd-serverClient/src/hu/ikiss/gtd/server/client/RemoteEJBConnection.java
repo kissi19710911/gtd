@@ -95,17 +95,6 @@ public class RemoteEJBConnection {
 
 	{
 		Properties props = new Properties();
-		/*
-		final Hashtable jndiProperties = new Hashtable();
-		jndiProperties.put(Context.URL_PKG_PREFIXES,
-				"org.jboss.ejb.client.naming");
-		jndiProperties.put("jboss.naming.client.ejb.context", true);
-		try {
-			context = new InitialContext(jndiProperties);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		*/
 		 String JBOSS_CONTEXT="org.jboss.naming.remote.client.InitialContextFactory";;
 		  props.put(Context.INITIAL_CONTEXT_FACTORY, JBOSS_CONTEXT);
 		  props.put(Context.PROVIDER_URL, "remote://localhost:4447");

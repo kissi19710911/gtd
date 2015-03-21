@@ -11,5 +11,6 @@
 	</bean>
 	<bean id="taskBusiness" class="hu.ikiss.gtd.server.business.impl.impl.TaskBusiness">
 	</bean>
-
+	<bean id="initRemoteService" class="hu.ikiss.gtd.server.init.InitRemoteService">
+	</bean>
 </beans>

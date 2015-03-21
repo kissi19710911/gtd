@@ -45,14 +45,8 @@ public class TaskTest {
 
 	}
 
-	public static void main(String[] args) throws NamingException {
-		TaskTest test = new TaskTest();
-		test.doTests();
-
-	}
-
 	private void doTests() throws NamingException {
-		daoTest1();
+//		daoTest1();
 		businessTest1();
 	}
 
@@ -63,8 +57,15 @@ public class TaskTest {
 	}
 
 	private void businessTest1() throws NamingException {
+	  lookupTaskBusiness();
 	}
 
 	public TaskTest() {
 	}
+    public static void main(String[] args) throws NamingException {
+      TaskTest test = new TaskTest();
+      test.doTests();
+
+  }
+
 }

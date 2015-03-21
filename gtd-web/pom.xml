@@ -55,7 +55,7 @@
 		</dependency>
 		<dependency>
 			<groupId>hu.ikiss.gtd</groupId>
-			<artifactId>gtd-dao</artifactId>
+			<artifactId>gtd-server</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
