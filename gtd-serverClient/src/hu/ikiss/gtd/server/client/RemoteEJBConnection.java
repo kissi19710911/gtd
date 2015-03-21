@@ -10,7 +10,8 @@ import javax.naming.NamingException;
 
 public class RemoteEJBConnection {
 
-	private String appName;
+	private static final boolean JBOSS = false;
+  private String appName;
 	private String moduleName;
 	private String distinctName;
 	private String beanName;
@@ -94,12 +95,16 @@ public class RemoteEJBConnection {
 	}
 
 	{
-		Properties props = new Properties();
+	  Properties props = new Properties();
+    if (JBOSS){
+		
 		 String JBOSS_CONTEXT="org.jboss.naming.remote.client.InitialContextFactory";;
 		  props.put(Context.INITIAL_CONTEXT_FACTORY, JBOSS_CONTEXT);
 		  props.put(Context.PROVIDER_URL, "remote://localhost:4447");
 		  props.put(Context.SECURITY_PRINCIPAL, "gtd");//
-		  props.put(Context.SECURITY_CREDENTIALS, "gtdgtd");
+		  props.put(Context.SECURITY_CREDENTIALS, "gtdgtd");}
+	  else {
+	  }
 		  try {
 			context = new InitialContext(props);
 		} catch (NamingException e) {

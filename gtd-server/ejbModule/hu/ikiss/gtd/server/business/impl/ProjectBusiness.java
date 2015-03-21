@@ -19,7 +19,6 @@ import org.springframework.stereotype.Component;
 @Remote(ProjectBusinessRemote.class)
 @EJB(name="ProjectBusiness",beanInterface=ProjectBusinessLocal.class)
 public class ProjectBusiness implements ProjectBusinessLocal, ProjectBusinessRemote {
-	public static String serviceName = "ProjectBusiness";
   @EJB
 	ProjectDAO projectDao;
 

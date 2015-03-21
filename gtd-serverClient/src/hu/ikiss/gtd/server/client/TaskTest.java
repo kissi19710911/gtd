@@ -1,15 +1,20 @@
 package hu.ikiss.gtd.server.client;
 
 import hu.ikiss.gtd.local.dto.TaskDTOLocal;
+import hu.ikiss.gtd.remote.businessinterface.ProjectBusinessRemote;
 import hu.ikiss.gtd.remote.businessinterface.TaskBusinessRemote;
 import hu.ikiss.gtd.remote.dao.TaskDAORemote;
+
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 import javax.naming.NamingException;
 
 public class TaskTest {
 
 
-	private final RemoteEJBConnection ejbConnection = new RemoteEJBConnection();
+	private static final String HOST = "localhost";
+  private final RemoteEJBConnection ejbConnection = new RemoteEJBConnection();
 
 	private TaskBusinessRemote lookupTaskBusiness() {
 		try {
@@ -47,10 +52,25 @@ public class TaskTest {
 
 	private void doTests() throws NamingException {
 //		daoTest1();
-		businessTest1();
+//		businessTest1();
+	  remoteTomcatTest();
 	}
 
-	private void daoTest1() {
+	private void remoteTomcatTest() {
+	  try { 
+	    Registry registry = LocateRegistry.getRegistry(HOST,9345); 
+	    String[] names = registry.list(); 
+	    for(String name1 : names){ 
+	        System.out.println("~~~~" + name1 + "~~~~"); 
+	    } 
+	    ProjectBusinessRemote serv = (ProjectBusinessRemote) registry.lookup(ProjectBusinessRemote.serviceName); 
+	    System.out.println(serv.create(null)); 
+	} catch (Exception e) { 
+	    System.err.println("Remoteservice exception:"); 
+	    e.printStackTrace(); 
+	}  }
+
+  private void daoTest1() {
 		TaskDTOLocal localDTO = new TaskDTOLocal();
 		localDTO.setName("Tululu");
 		localDTO = lookupTaskDAO().create(localDTO);
@@ -62,9 +82,15 @@ public class TaskTest {
 
 	public TaskTest() {
 	}
-    public static void main(String[] args) throws NamingException {
+	
+    public static void main(String... args){
       TaskTest test = new TaskTest();
-      test.doTests();
+      try {
+        test.doTests();
+      } catch (NamingException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
 
   }
 
