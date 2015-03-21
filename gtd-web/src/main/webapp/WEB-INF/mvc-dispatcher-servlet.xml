@@ -7,9 +7,9 @@
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
- 
+
 	<context:component-scan base-package="hu.ikiss.gtd" />
- 
+
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
@@ -19,9 +19,9 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
-	<bean
-		class="hu.ikiss.gtd.controller.Startup">
+	<bean class="hu.ikiss.gtd.controller.Startup">
 	</bean>
- 	<context:component-scan base-package="hu.ikiss.gtd" />
- 	
+	<bean class="hu.ikiss.gtd.controller.Home">
+	</bean>
+
 </beans>
