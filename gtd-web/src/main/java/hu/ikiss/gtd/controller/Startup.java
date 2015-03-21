@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Controller;
 
 /**
  * Servlet implementation class Startup
  */
+@Controller
 public class Startup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

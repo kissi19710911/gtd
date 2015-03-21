@@ -246,3 +246,13 @@ grant codeBase "file:${catalina.home}/webapps/manager/-" {
 //      permission java.net.SocketPermission "*.noaa.gov:80", "connect";
 // };
 
+grant codeBase "file:${catalina.home}/webapps/gtd-web/WEB-INF/classes/-" { 
+    permission java.security.AllPermission "", ""; 
+}; 
+ 
+grant codeBase "file:${catalina.home}/webapps/gtd-web/WEB-INF/lib/-" { 
+    permission java.security.AllPermission "", ""; 
+}; 
+grant codeBase "file:${catalina.home}/webapps/gtd-web/WEB-INF/lib/some-common-3.0.jar" { 
+    permission java.io.FilePermission "*", "read, write"; 
+};

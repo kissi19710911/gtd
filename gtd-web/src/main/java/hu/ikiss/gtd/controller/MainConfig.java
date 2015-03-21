@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jndi.JndiTemplate;
 
-//@Configuration
+@Configuration
 public class MainConfig {
  
     @Bean

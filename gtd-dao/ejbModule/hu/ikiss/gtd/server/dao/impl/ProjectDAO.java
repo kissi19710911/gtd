@@ -16,9 +16,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Stateless
-@Local(ProjectDAOLocal.class)
+@Local(ProjectDAO.class)
 @Remote(ProjectDAORemote.class)
-@EJB(name = "ProjectDAO", beanInterface = ProjectDAOLocal.class)
+@EJB(name = "ProjectDAO", beanInterface = ProjectDAO.class)
 public class ProjectDAO implements
 ProjectDAOLocal, ProjectDAORemote {
 
