@@ -16,7 +16,8 @@
 		<module>../gtd-server</module>
 		<module>../gtd-serverClient</module>
 		<module>../gtd-web</module>
- 	</modules>
+		<module>../gtd-webGwt</module>
+	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
