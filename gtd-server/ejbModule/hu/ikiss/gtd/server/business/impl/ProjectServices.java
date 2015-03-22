@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 @Stateless
 @Local(ProjectBusinessLocal.class)
 @Remote(ProjectBusinessRemote.class)
-@EJB(name="ProjectBusiness",beanInterface=ProjectBusinessLocal.class)
-public class ProjectBusiness implements ProjectBusinessLocal, ProjectBusinessRemote {
+@EJB(name="ProjectServices",beanInterface=ProjectBusinessLocal.class)
+public class ProjectServices implements ProjectBusinessLocal, ProjectBusinessRemote {
   @EJB
 	ProjectDAO projectDao;
 

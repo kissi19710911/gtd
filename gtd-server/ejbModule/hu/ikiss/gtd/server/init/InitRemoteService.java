@@ -1,7 +1,7 @@
 package hu.ikiss.gtd.server.init;
 
 import hu.ikiss.gtd.remote.businessinterface.ProjectBusinessRemote;
-import hu.ikiss.gtd.server.business.impl.ProjectBusiness;
+import hu.ikiss.gtd.server.business.impl.ProjectServices;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -16,11 +16,11 @@ public class InitRemoteService {
   public InitRemoteService(){ 
    if(!isRegistered){ 
       try { 
-          service = new ProjectBusiness(); 
+          service = new ProjectServices(); 
           ProjectBusinessRemote stub = 
               (ProjectBusinessRemote) UnicastRemoteObject.exportObject(service, 0); 
           Registry registry = LocateRegistry.createRegistry(9345); 
-          registry.rebind(ProjectBusiness.serviceName, stub); 
+          registry.rebind(ProjectServices.serviceName, stub); 
           System.out.println("Remote service bound"); 
           isRegistered = true; 
       } catch (Exception e) { 

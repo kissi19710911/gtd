@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 @Stateless 
 @Local(TaskBusinessLocal.class)
 @Remote(TaskBusinessRemote.class)
-@EJB(name="TaskBusiness",beanInterface=TaskBusinessLocal.class)
-public class TaskBusiness implements TaskBusinessLocal, TaskBusinessRemote {
+@EJB(name="TaskServices",beanInterface=TaskBusinessLocal.class)
+public class TaskServices implements TaskBusinessLocal, TaskBusinessRemote {
 	@EJB
 	TaskDAOLocal taskDao;
 
