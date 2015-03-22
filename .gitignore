@@ -6,3 +6,5 @@
 */.classpath
 *.class
 Servers/
+*.gwt-log*
+gtd-webGwt/war/*
