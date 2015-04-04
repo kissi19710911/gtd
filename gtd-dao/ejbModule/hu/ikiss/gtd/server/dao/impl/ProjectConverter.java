@@ -1,28 +1,29 @@
 package hu.ikiss.gtd.server.dao.impl;
 
-import hu.ikiss.gtd.local.dao.common.DomainVSDtoConverter;
-import hu.ikiss.gtd.local.dto.ProjectDTOLocal;
+import hu.ikiss.gtd.dao.common.DomainVSDtoConverter;
+import hu.ikiss.gtd.dto.ProjectDTO;
 import hu.ikiss.gtd.server.domain.Project;
 
-import java.io.Serializable;
+import org.springframework.stereotype.Component;
 
-public class ProjectConverter implements DomainVSDtoConverter<ProjectDTOLocal>{
+@Component
+public class ProjectConverter implements DomainVSDtoConverter<ProjectDTO, Project> {
 
-	@Override
-	public ProjectDTOLocal toDTO(Serializable domain) {
-		Project toConvert = (Project)domain;
-		ProjectDTOLocal res = new ProjectDTOLocal();
-		res.setId(toConvert.getId());
-		res.setName(toConvert.getName());
-		return res;
-	}
+  @Override
+  public Project toDomain(final ProjectDTO dto) {
+    final Project domain = new Project();
+    domain.setId(dto.getId());
+    domain.setName(dto.getName());
+    return domain;
+  }
 
-	@Override
-	public Serializable toDomain(ProjectDTOLocal dto) {
-		Project domain = new Project();
-		domain.setId(dto.getId());
-		domain.setName(dto.getName());
-		return domain;
-	}
+  @Override
+  public ProjectDTO toDTO(final Project domain) {
+    final Project toConvert = domain;
+    final ProjectDTO res = new ProjectDTO();
+    res.setId(toConvert.getId());
+    res.setName(toConvert.getName());
+    return res;
+  }
 
 }

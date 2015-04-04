@@ -1,5 +1,7 @@
 package hu.ikiss.gtd.server.domain;
 
+import hu.ikiss.gtd.local.Domain;
+
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -23,58 +25,57 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 @Entity
 @Table(name = "PROJECTS")
 @NamedQueries({
-		@NamedQuery(name = "Project.findByPrimaryKey", query = "select m from Project m where m.id = :id"),
-		@NamedQuery(name = "Project.deleteByPrimaryKey", query = "delete from Project where id = :id")
-})
-public class Project implements Serializable, Comparable<Project> {
+    @NamedQuery(name = "Project.findByPrimaryKey",
+        query = "select m from Project m where m.id = :id"),
+    @NamedQuery(name = "Project.deleteByPrimaryKey", query = "delete from Project where id = :id")})
+public class Project implements Serializable, Comparable<Project>, Domain {
 
-	private Integer id;
-	private String name;
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
+  private Integer           id;
+  private String            name;
 
-	public Project() {
-		super();
-	}
+  public Project() {
+    super();
+  }
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROJECTS_SEQ")
-	@SequenceGenerator(name = "PROJECTS_SEQ", sequenceName = "PROJECTS_SEQ", allocationSize=1)
-	@Column(name = "ID")
-	public Integer getId() {
-		return this.id;
-	}
+  @Override
+  public int compareTo(final Project o) {
+    return new CompareToBuilder().append(this.name, o.name).toComparison();
+  }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+  @Override
+  public boolean equals(final Object o) {
+    if (o.getClass() == this.getClass()) {
+      return new EqualsBuilder().append(this.getName(), ((Project) o).getName()).isEquals();
+    } else {
+      return false;
+    }
 
-	@Column(name = "NAME")
-	public String getName() {
-		return this.name;
-	}
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROJECTS_SEQ")
+  @SequenceGenerator(name = "PROJECTS_SEQ", sequenceName = "PROJECTS_SEQ", allocationSize = 1)
+  @Column(name = "ID")
+  public Integer getId() {
+    return this.id;
+  }
 
-	@Override
-	public int compareTo(Project o) {
-		return new CompareToBuilder().append(this.name, o.name).toComparison();
-	}
+  @Column(name = "NAME")
+  public String getName() {
+    return this.name;
+  }
 
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(this.name).toHashCode();
-	}
+  @Override
+  public int hashCode() {
+    return new HashCodeBuilder().append(this.name).toHashCode();
+  }
 
-	@Override
-	public boolean equals(Object o) {
-		if (o.getClass() == this.getClass()) {
-			return new EqualsBuilder().append(this.getName(),
-					((Project) o).getName()).isEquals();
-		} else {
-			return false;
-		}
+  public void setId(final Integer id) {
+    this.id = id;
+  }
 
-	}
+  public void setName(final String name) {
+    this.name = name;
+  }
 }

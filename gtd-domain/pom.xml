@@ -68,35 +68,6 @@
 	</build>
 
 	<dependencies>
-
-		<!-- Declare the APIs we depend on and need for compilation. All of them 
-			are provided by JBoss AS 7 -->
-
-		<!-- Import the EJB API, we use provided scope as the API is included in 
-			JBoss AS 7 -->
-		<dependency>
-			<groupId>org.jboss.spec.javax.ejb</groupId>
-			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
-			<version>1.0.2.Final</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- Import the CDI API, we use provided scope as the API is included in 
-			JBoss AS 7 -->
-		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
-			<version>1.1</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- Import the JPA API, we use provided scope as the API is included in 
-			JBoss AS 7 -->
-
-		<!-- JSR-303 (Bean Validation) Implementation -->
-		<!-- Provides portable constraints such as @Email -->
-		<!-- Hibernate Validator is shipped in JBoss AS 7 -->
-
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
@@ -104,13 +75,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!--dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-validator</artifactId> 
-			<scope>provided</scope> <version>5.0.3.Final</version> <exclusions> <exclusion> 
-			<groupId>org.slf4j</groupId> <artifactId>slf4j-api</artifactId> </exclusion> 
-			</exclusions> </dependency -->
-
-		<!--dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-core</artifactId> 
-			<scope>provided</scope> <version>4.3.7.Final</version> </dependency -->
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>

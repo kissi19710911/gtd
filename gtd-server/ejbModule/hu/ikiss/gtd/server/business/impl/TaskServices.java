@@ -1,34 +1,34 @@
 package hu.ikiss.gtd.server.business.impl;
 
-import hu.ikiss.gtd.local.businessinterface.TaskBusinessLocal;
-import hu.ikiss.gtd.local.dao.TaskDAOLocal;
-import hu.ikiss.gtd.local.dto.TaskDTOLocal;
-import hu.ikiss.gtd.remote.businessinterface.TaskBusinessRemote;
-import hu.ikiss.gtd.remote.dto.TaskDTORemote;
+import hu.ikiss.gtd.businessinterface.TaskBusiness;
+import hu.ikiss.gtd.dao.TaskDAO;
+import hu.ikiss.gtd.dto.TaskDTO;
 
-import javax.ejb.EJB;
-import javax.ejb.Local;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
+import java.rmi.RemoteException;
+import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@Stateless 
-@Local(TaskBusinessLocal.class)
-@Remote(TaskBusinessRemote.class)
-@EJB(name="TaskServices",beanInterface=TaskBusinessLocal.class)
-public class TaskServices implements TaskBusinessLocal, TaskBusinessRemote {
-	@EJB
-	TaskDAOLocal taskDao;
+public class TaskServices implements TaskBusiness {
+  @Autowired
+  TaskDAO taskDao;
 
-	public TaskDTORemote create(TaskDTORemote dto) {
-		TaskDTOLocal dtoLocal = new TaskDTOLocal();
-		dtoLocal.setName(dto.getName());
-		dtoLocal = taskDao.create(dtoLocal);
-		
-		dto.setId(dtoLocal.getId());
-		dto.setName(dtoLocal.getName());
-		return dto;
-	}
+  @Override
+  public TaskDTO create(final TaskDTO dto) throws RemoteException {
+    TaskDTO dtoLocal = new TaskDTO();
+    dtoLocal.setName(dto.getName());
+    dtoLocal = this.taskDao.create(dtoLocal);
+
+    dto.setId(dtoLocal.getId());
+    dto.setName(dtoLocal.getName());
+    return dto;
+  }
+
+  @Override
+  public Collection<TaskDTO> findRelevant() throws RemoteException {
+    final Collection<TaskDTO> res = null;
+    return res;
+  }
 }

@@ -1,61 +1,79 @@
 package hu.ikiss.gtd.server.dao.impl;
 
-import hu.ikiss.gtd.local.dao.common.CommonDAO;
-import hu.ikiss.gtd.local.dao.common.DomainVSDtoConverter;
+import hu.ikiss.gtd.dao.common.CommonDAOInt;
+import hu.ikiss.gtd.dao.common.DomainVSDtoConverter;
+import hu.ikiss.gtd.local.DTO;
+import hu.ikiss.gtd.local.Domain;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-public class CommonDAOimpl<T extends Comparable<T>> implements CommonDAO<T> {
+public class CommonDAOimpl<T extends DTO, L extends Domain> implements CommonDAOInt<T> {
 
-	private EntityManager em;
+  DomainVSDtoConverter<T, L> converter;
 
-	DomainVSDtoConverter<T> converter;
+  @PersistenceContext(unitName = "gtdDS")
+  private EntityManager      em;
 
-	public void setEm(EntityManager em) {
-		this.em = em;
-	}
 
-	@Override
-	public T findByPrimaryKey(Integer id, String namedQuery) {
-		Query query = em.createNamedQuery(namedQuery);
-		query.setParameter("id", id);
-		Object queryRes = query.getSingleResult();
-		T res = converter.toDTO((Serializable) queryRes);
-		return res;
-	}
+  public CommonDAOimpl(final DomainVSDtoConverter<T, L> converter) {
+    this.converter = converter;
+  }
 
-	@Override
-	public void deleteByPrimaryKey(Integer id, String namedQuery) {
-		Query query = em.createNamedQuery(namedQuery);
-		query.setParameter("id", id);
-		query.executeUpdate();
-	}
+  @Override
+  public T create(final T DTO) {
 
-	@Override
-	public T create(T DTO) {
+    final L domain = this.converter.toDomain(DTO);
+    this.em.persist(domain);
+    return this.converter.toDTO(domain);
+  }
 
-		Serializable domain = converter.toDomain(DTO);
-		em.persist(domain);
-		return converter.toDTO(domain);
-	}
+  @Override
+  public void deleteByPrimaryKey(final Integer id, final String namedQuery) {
+    final Query query = this.em.createNamedQuery(namedQuery);
+    query.setParameter("id", id);
+    query.executeUpdate();
+  }
 
-	@Override
-	public T update(T DTO) {
-		Serializable domain = converter.toDomain(DTO);
-		domain = em.merge(domain);
-		return converter.toDTO(domain);
-	}
+  @Override
+  public T findByPrimaryKey(final Integer id, final String namedQuery) {
+    final Query query = this.em.createNamedQuery(namedQuery);
+    query.setParameter("id", id);
+    final L queryRes = (L) query.getSingleResult();
+    final T res = this.converter.toDTO(queryRes);
+    return res;
+  }
 
-	@SuppressWarnings("unused")
-	private CommonDAOimpl() {
+  @Override
+  public List<T> findByQuery(final String namedQuery, final String... param) {
+    final Query query = this.em.createNamedQuery(namedQuery);
+    final List<T> res = new ArrayList<T>();
+    int i = 1;
+    if (param != null) {
+      for (final String par : param) {
+        query.setParameter(i++, par);
+      }
+    }
+    for (final L r : (Collection<L>) query.getResultList()) {
+      res.add(this.converter.toDTO(r));
+    }
+    return res;
+  }
 
-	}
+  public void setEm(final EntityManager em) {
+    this.em = em;
+  }
 
-	public CommonDAOimpl(DomainVSDtoConverter<T> converter) {
-		this.converter = converter;
-	}
+  @Override
+  public T update(final T DTO) {
+    L domain = this.converter.toDomain(DTO);
+    domain = this.em.merge(domain);
+    return this.converter.toDTO(domain);
+  }
 
 }

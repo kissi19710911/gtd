@@ -1,61 +1,52 @@
 package hu.ikiss.gtd.server.dao.impl;
 
-import hu.ikiss.gtd.local.dao.ProjectDAOLocal;
-import hu.ikiss.gtd.local.dao.common.DomainVSDtoConverter;
-import hu.ikiss.gtd.local.dto.ProjectDTOLocal;
-import hu.ikiss.gtd.remote.dao.ProjectDAORemote;
+import hu.ikiss.gtd.dao.common.DomainVSDtoConverter;
+import hu.ikiss.gtd.dto.ProjectDTO;
+import hu.ikiss.gtd.server.domain.Project;
 
-import javax.ejb.EJB;
-import javax.ejb.Local;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Component;
 
 @Component
-@Stateless
-@Local(ProjectDAO.class)
-@Remote(ProjectDAORemote.class)
-@EJB(name = "ProjectDAO", beanInterface = ProjectDAO.class)
-public class ProjectDAO implements
-ProjectDAOLocal, ProjectDAORemote {
+public class ProjectDAO implements hu.ikiss.gtd.dao.ProjectDAO {
 
-	@PersistenceContext(unitName = "gtdDS")
-	private EntityManager em;
+  private final CommonDAOimpl<ProjectDTO, Project>        commonDAO;
 
-	private  DomainVSDtoConverter<ProjectDTOLocal> converter;
+  private final DomainVSDtoConverter<ProjectDTO, Project> converter;
 
-	private CommonDAOimpl<ProjectDTOLocal> commonDAO;
-	
-	public ProjectDTOLocal create(ProjectDTOLocal DTO) {
-		commonDAO.setEm(em);
-		return commonDAO.create(DTO);
-	}
-	
-	public ProjectDAO() {
-		converter = new ProjectConverter();
-		commonDAO = new CommonDAOimpl<ProjectDTOLocal>(converter);
-	}
+  @PersistenceContext(unitName = "gtdDS")
+  private EntityManager                                        em;
 
-	@Override
-	public ProjectDTOLocal findByPrimaryKey(Integer id, String namedQuery) {
-		commonDAO.setEm(em);
-		return commonDAO.findByPrimaryKey(id, "Project.findByPrimaryKey");
-	}
+  public ProjectDAO() {
+    this.converter = new ProjectConverter();
+    this.commonDAO = new CommonDAOimpl<ProjectDTO, Project>(this.converter);
+  }
 
-	@Override
-	public void deleteByPrimaryKey(Integer id, String namedQuery) {
-		commonDAO.setEm(em);
-		commonDAO.deleteByPrimaryKey(id, "Project.deleteByPrimaryKey");
-		
-	}
+  @Override
+  public ProjectDTO create(final ProjectDTO DTO) {
+    this.commonDAO.setEm(this.em);
+    return this.commonDAO.create(DTO);
+  }
 
-	@Override
-	public ProjectDTOLocal update(ProjectDTOLocal DTO) {
-		commonDAO.setEm(em);
-		em.merge(converter.toDomain(DTO));
-		return DTO;
-	}
+  @Override
+  public void deleteByPrimaryKey(final Integer id) {
+    this.commonDAO.setEm(this.em);
+    this.commonDAO.deleteByPrimaryKey(id, "Project.deleteByPrimaryKey");
+
+  }
+
+  @Override
+  public ProjectDTO findByPrimaryKey(final Integer id) {
+    this.commonDAO.setEm(this.em);
+    return this.commonDAO.findByPrimaryKey(id, "Project.findByPrimaryKey");
+  }
+
+  @Override
+  public ProjectDTO update(final ProjectDTO DTO) {
+    this.commonDAO.setEm(this.em);
+    this.em.merge(this.converter.toDomain(DTO));
+    return DTO;
+  }
 }

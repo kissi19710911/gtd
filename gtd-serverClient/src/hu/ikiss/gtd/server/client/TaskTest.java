@@ -1,97 +1,75 @@
 package hu.ikiss.gtd.server.client;
 
-import hu.ikiss.gtd.local.dto.TaskDTOLocal;
-import hu.ikiss.gtd.remote.businessinterface.ProjectBusinessRemote;
-import hu.ikiss.gtd.remote.businessinterface.TaskBusinessRemote;
-import hu.ikiss.gtd.remote.dao.TaskDAORemote;
+import hu.ikiss.gtd.businessinterface.ProjectBusiness;
+import hu.ikiss.gtd.businessinterface.TaskBusiness;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import javax.naming.NamingException;
 
+
 public class TaskTest {
 
 
-	private static final String HOST = "localhost";
+  private static final String HOST = "localhost";
+
+  public static void main(final String... args) {
+    final TaskTest test = new TaskTest();
+    try {
+      test.doTests();
+    } catch (final NamingException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
+  }
+
   private final RemoteEJBConnection ejbConnection = new RemoteEJBConnection();
 
-	private TaskBusinessRemote lookupTaskBusiness() {
-		try {
-			ejbConnection.setAppName("gtd-application");
-			ejbConnection.setModuleName("gtd-server-0.0.1-SNAPSHOT");
-			ejbConnection.setDistinctName("");
-			ejbConnection.setBeanName("TaskBusiness");// TaskBusinessRemote.class.getSimpleName();
-			ejbConnection.setViewClassName(TaskBusinessRemote.class.getName());
-			TaskBusinessRemote bean = (TaskBusinessRemote) ejbConnection
-					.lookup();
-			return bean;
 
-		} catch (NamingException ne) {
-			throw new RuntimeException(ne);
-		}
+  public TaskTest() {
+  }
 
-	}
+  private void businessTest1() throws NamingException {
+    this.lookupTaskBusiness();
+  }
 
-	private TaskDAORemote lookupTaskDAO() {
-		try {
-			ejbConnection.setAppName("gtd-application");
-			ejbConnection.setModuleName("gtd-dao-0.0.1-SNAPSHOT");
-			ejbConnection.setDistinctName("");
-			ejbConnection.setBeanName("TaskDAO");
-			ejbConnection.setViewClassName(TaskDAORemote.class.getName());
-			TaskDAORemote bean = (TaskDAORemote) ejbConnection
-					.lookup();
-			return bean;
+  private void doTests() throws NamingException {
+    // daoTest1();
+    // businessTest1();
+    this.remoteTomcatTest();
+  }
 
-		} catch (NamingException ne) {
-			throw new RuntimeException(ne);
-		}
+  private TaskBusiness lookupTaskBusiness() {
+    try {
+      this.ejbConnection.setAppName("gtd-application");
+      this.ejbConnection.setModuleName("gtd-server-0.0.1-SNAPSHOT");
+      this.ejbConnection.setDistinctName("");
+      this.ejbConnection.setBeanName("TaskBusiness");// TaskBusinessRemote.class.getSimpleName();
+      this.ejbConnection.setViewClassName(TaskBusiness.class.getName());
+      final TaskBusiness bean = (TaskBusiness) this.ejbConnection.lookup();
+      return bean;
 
-	}
+    } catch (final NamingException ne) {
+      throw new RuntimeException(ne);
+    }
 
-	private void doTests() throws NamingException {
-//		daoTest1();
-//		businessTest1();
-	  remoteTomcatTest();
-	}
+  }
 
-	private void remoteTomcatTest() {
-	  try { 
-	    Registry registry = LocateRegistry.getRegistry(HOST,9345); 
-	    String[] names = registry.list(); 
-	    for(String name1 : names){ 
-	        System.out.println("~~~~" + name1 + "~~~~"); 
-	    } 
-	    ProjectBusinessRemote serv = (ProjectBusinessRemote) registry.lookup(ProjectBusinessRemote.serviceName); 
-	    System.out.println(serv.create(null)); 
-	} catch (Exception e) { 
-	    System.err.println("Remoteservice exception:"); 
-	    e.printStackTrace(); 
-	}  }
-
-  private void daoTest1() {
-		TaskDTOLocal localDTO = new TaskDTOLocal();
-		localDTO.setName("Tululu");
-		localDTO = lookupTaskDAO().create(localDTO);
-	}
-
-	private void businessTest1() throws NamingException {
-	  lookupTaskBusiness();
-	}
-
-	public TaskTest() {
-	}
-	
-    public static void main(String... args){
-      TaskTest test = new TaskTest();
-      try {
-        test.doTests();
-      } catch (NamingException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
+  private void remoteTomcatTest() {
+    try {
+      final Registry registry = LocateRegistry.getRegistry(TaskTest.HOST, 9345);
+      final String[] names = registry.list();
+      for (final String name1 : names) {
+        System.out.println("~~~~" + name1 + "~~~~");
       }
-
+      final ProjectBusiness serv = (ProjectBusiness) registry.lookup(ProjectBusiness.serviceName);
+      System.out.println(serv.create(null));
+    } catch (final Exception e) {
+      System.err.println("Remoteservice exception:");
+      e.printStackTrace();
+    }
   }
 
 }
