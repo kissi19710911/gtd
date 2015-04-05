@@ -9,17 +9,5 @@
 	http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd ">
 	<aop:aspectj-autoproxy />
-	<bean id="dbDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="jdbc/gtdDB" />
-	</bean>
-	<bean id="projectDAO" class="hu.ikiss.gtd.server.dao.impl.ProjectDAO">
-	</bean>
-	<bean id="taskDAO" class="hu.ikiss.gtd.server.dao.impl.TaskDAO">
-	</bean>
-	<!-- Aspect -->
-	<bean id="dbConnection" class="hu.ikiss.gtd.server.dao.impl.DbConnection"
-		factory-method="aspectOf">
-		<property name="profilingStrategy" ref="jamonProfilingStrategy" />
-	</bean>
 	<context:load-time-weaver />
 </beans>

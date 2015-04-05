@@ -10,16 +10,13 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 public class CommonDAOimpl<T extends DTO, L extends Domain> implements CommonDAOInt<T> {
 
   DomainVSDtoConverter<T, L> converter;
 
-  @PersistenceContext(unitName = "gtdDS")
   private EntityManager      em;
-
 
   public CommonDAOimpl(final DomainVSDtoConverter<T, L> converter) {
     this.converter = converter;

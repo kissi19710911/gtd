@@ -28,7 +28,7 @@ public class TaskServices implements TaskBusiness {
 
   @Override
   public Collection<TaskDTO> findRelevant() throws RemoteException {
-    final Collection<TaskDTO> res = null;
+    final Collection<TaskDTO> res = this.taskDao.findRelevant();
     return res;
   }
 }

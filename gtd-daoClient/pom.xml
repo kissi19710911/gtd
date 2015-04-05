@@ -4,6 +4,18 @@
 	<groupId>gtd-daoClient</groupId>
 	<artifactId>gtd-daoClient</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<java.version>1.7</java.version>
+		<servlet-api.version>3.0.1</servlet-api.version>
+		<ehcache.version>2.8.1</ehcache.version>
+		<hibernate-validator.version>5.0.2.Final</hibernate-validator.version>
+		<spring.version>4.0.2.RELEASE</spring.version>
+		<spring-plugin-core.version>1.0.0.RELEASE</spring-plugin-core.version>
+		<spring-hateoas.version>0.9.0.RELEASE</spring-hateoas.version>
+		<spring-security.version>3.2.1.RELEASE</spring-security.version>
+		<aspectj.version>1.7.4</aspectj.version>
+		<tomcat-version>7.0.57</tomcat-version>
+	</properties>
 	<build>
 		<sourceDirectory>ejbModule</sourceDirectory>
 		<resources>
@@ -16,11 +28,21 @@
 		</resources>
 		<plugins>
 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>properties-maven-plugin</artifactId>
+				<version>1.0-alpha-2</version>
+				<configuration>
+					<files>
+						<file>../gtd/gtd.version.properties</file>
+					</files>
+				</configuration>
+			</plugin>
+			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 				</configuration>
 			</plugin>
 		</plugins>

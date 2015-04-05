@@ -16,18 +16,44 @@
 		<module>../gtd-server</module>
 		<module>../gtd-serverClient</module>
 		<module>../gtd-web</module>
-		<!--module>../gtd-webGwt</module-->
+		<!--module>../gtd-webGwt</module -->
 	</modules>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- other plugin versions -->
-		<version.ejb.plugin>2.3</version.ejb.plugin>
-		<version.surefire.plugin>2.10</version.surefire.plugin>
-		<version.war.plugin>2.1.1</version.war.plugin>
-		<maven.compiler.target>1.7</maven.compiler.target>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<spring.version>3.0.5.RELEASE</spring.version>
-	</properties>
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>properties-maven-plugin</artifactId>
+            <version>1.0-alpha-1</version>
+            <executions>
+                <execution>
+                    <phase>initialize</phase>
+                    <goals>
+                        <goal>read-project-properties</goal>
+                    </goals>
+                    <configuration>
+                        <files>
+                            <file>../gtd/gtd.version.properties</file>
+                        </files>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+   <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>properties-maven-plugin</artifactId>
+          <version>1.0-alpha-2</version>
+				<configuration>
+					<files>
+						<file>../gtd/gtd.version.properties</file>
+					</files>
+				</configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+     
+</build>
 
 </project>
