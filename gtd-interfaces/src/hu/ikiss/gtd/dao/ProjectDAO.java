@@ -7,5 +7,7 @@ public interface ProjectDAO extends DAO<ProjectDTO> {
   @Override
   ProjectDTO create(ProjectDTO dto);
 
+  void setConverter();
+
   void setEm();
 }

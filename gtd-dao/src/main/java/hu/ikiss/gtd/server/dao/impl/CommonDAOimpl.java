@@ -18,10 +18,6 @@ public class CommonDAOimpl<T extends DTO, L extends Domain> implements CommonDAO
 
   private EntityManager      em;
 
-  public CommonDAOimpl(final DomainVSDtoConverter<T, L> converter) {
-    this.converter = converter;
-  }
-
   @Override
   public T create(final T DTO) {
 
@@ -60,6 +56,10 @@ public class CommonDAOimpl<T extends DTO, L extends Domain> implements CommonDAO
       res.add(this.converter.toDTO(r));
     }
     return res;
+  }
+
+  public void setConverter(final DomainVSDtoConverter<T, L> converter) {
+    this.converter = converter;
   }
 
   public void setEm(final EntityManager em) {

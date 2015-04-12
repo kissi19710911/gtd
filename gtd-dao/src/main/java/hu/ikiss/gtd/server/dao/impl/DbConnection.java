@@ -19,25 +19,31 @@ public class DbConnection {
   @Autowired
   hu.ikiss.gtd.dao.TaskDAO    taskDao;
 
+  @Pointcut("execution(* hu.ikiss.gtd.server.dao.impl.*.setConverter(..))")
+  public void daoSetConverter() {
+  }
+
   @Pointcut("execution(* hu.ikiss.gtd.server.dao.impl.*.setEm(..))")
   public void daoSetEm() {
   }
 
-  @Pointcut("execution(* hu.ikiss.gtd.server.dao.impl.ProjectDAO.*(..)) && !daoSetEm()")
+  @Pointcut("execution(* hu.ikiss.gtd.server.dao.impl.ProjectDAO.*(..)) && !daoSetEm() && !daoSetConverter() ")
   public void projectDAOMethodsWithDBAccess() {
   }
 
   @Before("projectDAOMethodsWithDBAccess()")
   public void setProjectConnection(final JoinPoint joinPoint) {
     this.projectDao.setEm();
+    this.projectDao.setConverter();
   }
 
   @Before("taskDAOMethodsWithDBAccess()")
   public void setTaskConnection(final JoinPoint joinPoint) {
     this.taskDao.setEm();
+    this.taskDao.setConverter();
   }
 
-  @Pointcut("execution(* hu.ikiss.gtd.server.dao.impl.TaskDAO.*(..)) && !daoSetEm()")
+  @Pointcut("execution(* hu.ikiss.gtd.server.dao.impl.TaskDAO.*(..)) && !daoSetEm() && !daoSetConverter() ")
   public void taskDAOMethodsWithDBAccess() {
   }
 }

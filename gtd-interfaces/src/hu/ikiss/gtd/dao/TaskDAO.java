@@ -13,6 +13,8 @@ public interface TaskDAO {
 
   public List<TaskDTO> findRelevant();
 
+  void setConverter();
+
   void setEm();
 
   TaskDTO update(TaskDTO DTO);

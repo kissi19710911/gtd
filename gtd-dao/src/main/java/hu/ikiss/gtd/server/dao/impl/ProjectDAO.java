@@ -21,13 +21,14 @@ public class ProjectDAO implements hu.ikiss.gtd.dao.ProjectDAO {
   private EntityManager                            em;
 
   public ProjectDAO() {
-    this.commonDAO = new CommonDAOimpl<ProjectDTO, Project>(this.converter);
+    this.commonDAO = new CommonDAOimpl<ProjectDTO, Project>();
   }
 
   @Override
   public ProjectDTO create(final ProjectDTO DTO) {
     return this.commonDAO.create(DTO);
   }
+
 
   @Override
   public void deleteByPrimaryKey(final Integer id) {
@@ -38,6 +39,11 @@ public class ProjectDAO implements hu.ikiss.gtd.dao.ProjectDAO {
   @Override
   public ProjectDTO findByPrimaryKey(final Integer id) {
     return this.commonDAO.findByPrimaryKey(id, "Project.findByPrimaryKey");
+  }
+
+  @Override
+  public void setConverter() {
+    this.commonDAO.setConverter(this.converter);
   }
 
   @Override

@@ -23,7 +23,7 @@ public class TaskDAO implements hu.ikiss.gtd.dao.TaskDAO {
   private EntityManager                      em;
 
   public TaskDAO() {
-    this.commonDAO = new CommonDAOimpl<TaskDTO, Task>(this.converter);
+    this.commonDAO = new CommonDAOimpl<TaskDTO, Task>();
   }
 
   @Override
@@ -48,13 +48,14 @@ public class TaskDAO implements hu.ikiss.gtd.dao.TaskDAO {
   }
 
   @Override
+  public void setConverter() {
+    this.commonDAO.setConverter(this.converter);
+  }
+
+  @Override
   public void setEm() {
     this.commonDAO.setEm(this.em);
 
-  }
-
-  public void setEM(final EntityManager em) {
-    this.commonDAO.setEm(em);
   }
 
   @Override
