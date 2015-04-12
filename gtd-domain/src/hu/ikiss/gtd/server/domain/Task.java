@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
@@ -25,13 +27,13 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 @Entity
 @Table(name = "TASKS")
 @NamedQueries({
-  @NamedQuery(name = "Task.findByPrimaryKey", query = "select m from Task m where m.id = :id"),
-  @NamedQuery(name = "Task.deleteByPrimaryKey", query = "delete from Task where id = :id"),
-  @NamedQuery(name = "Task.findRelevant", query = "select t from Task t") // TODO add relevant
-  // param
-  // @NamedQuery(name = "Task.insert", query = "insert into Task values (:task)"),
-  // @NamedQuery(name = "Task.updateNameByPrimaryKey", query =
-  // "update Task set name = :name where id = :id")
+    @NamedQuery(name = "Task.findByPrimaryKey", query = "select m from Task m where m.id = :id"),
+    @NamedQuery(name = "Task.deleteByPrimaryKey", query = "delete from Task where id = :id"),
+    @NamedQuery(name = "Task.findRelevant", query = "select t from Task t") // TODO add relevant
+// param
+// @NamedQuery(name = "Task.insert", query = "insert into Task values (:task)"),
+// @NamedQuery(name = "Task.updateNameByPrimaryKey", query =
+// "update Task set name = :name where id = :id")
 })
 public class Task implements Serializable, Comparable<Task>, Domain {
 
@@ -76,12 +78,9 @@ public class Task implements Serializable, Comparable<Task>, Domain {
     return this.name;
   }
 
-  /*
-   * @ManyToOne(optional = false)
-   * 
-   * @JoinColumn(name = "PROJECT_ID", referencedColumnName = "id", nullable = false, updatable =
-   * false)
-   */
+
+  @ManyToOne(optional = false)
+  @JoinColumn(name = "PROJECT_ID", referencedColumnName = "id", nullable = false, updatable = false)
   public Project getProject() {
     return this.project;
   }
