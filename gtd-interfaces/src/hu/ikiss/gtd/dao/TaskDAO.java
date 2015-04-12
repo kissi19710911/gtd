@@ -13,6 +13,7 @@ public interface TaskDAO {
 
   public List<TaskDTO> findRelevant();
 
-  TaskDTO update(TaskDTO DTO);
+  void setEm();
 
+  TaskDTO update(TaskDTO DTO);
 }

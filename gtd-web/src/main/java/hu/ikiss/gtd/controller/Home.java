@@ -1,7 +1,7 @@
 package hu.ikiss.gtd.controller;
 
+import hu.ikiss.gtd.businessinterface.TaskBusiness;
 import hu.ikiss.gtd.dto.TaskDTO;
-import hu.ikiss.gtd.server.business.impl.TaskServices;
 
 import java.rmi.RemoteException;
 
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class Home {
 
   @Autowired
-  TaskServices taskService;
+  TaskBusiness taskService;
 
   @RequestMapping(method = RequestMethod.GET)
   public String tasks(final ModelMap model) {

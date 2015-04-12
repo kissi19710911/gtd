@@ -4,6 +4,7 @@ import hu.ikiss.gtd.dto.ProjectDTO;
 import hu.ikiss.gtd.server.domain.Project;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,10 @@ public class ProjectDAO implements hu.ikiss.gtd.dao.ProjectDAO {
   private final CommonDAOimpl<ProjectDTO, Project> commonDAO;
 
   @Autowired
-  private ProjectConverter                         converter;
+  private DomainVsConverterProject                 converter;
+
+  @PersistenceContext(name = "gtdDS")
+  private EntityManager                            em;
 
   public ProjectDAO() {
     this.commonDAO = new CommonDAOimpl<ProjectDTO, Project>(this.converter);
@@ -36,8 +40,9 @@ public class ProjectDAO implements hu.ikiss.gtd.dao.ProjectDAO {
     return this.commonDAO.findByPrimaryKey(id, "Project.findByPrimaryKey");
   }
 
-  public void setEM(final EntityManager em) {
-    this.commonDAO.setEm(em);
+  @Override
+  public void setEm() {
+    this.commonDAO.setEm(this.em);
 
   }
 

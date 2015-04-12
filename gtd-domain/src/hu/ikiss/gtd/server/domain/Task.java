@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
@@ -78,8 +76,12 @@ public class Task implements Serializable, Comparable<Task>, Domain {
     return this.name;
   }
 
-  @ManyToOne(optional = false)
-  @JoinColumn(name = "PROJECT_ID", nullable = false, updatable = false)
+  /*
+   * @ManyToOne(optional = false)
+   * 
+   * @JoinColumn(name = "PROJECT_ID", referencedColumnName = "id", nullable = false, updatable =
+   * false)
+   */
   public Project getProject() {
     return this.project;
   }

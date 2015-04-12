@@ -1,33 +1,43 @@
 package hu.ikiss.gtd.server.dao.impl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.stereotype.Component;
 
 @Aspect
+@Component
+@EnableAspectJAutoProxy
 public class DbConnection {
 
-  @PersistenceContext(unitName = "gtdDS")
-  private EntityManager em;
+  @Autowired
+  hu.ikiss.gtd.dao.ProjectDAO projectDao;
 
   @Autowired
-  ProjectDAO            projectDao;
+  hu.ikiss.gtd.dao.TaskDAO    taskDao;
 
-  @Autowired
-  TaskDAO               taskDao;
-
-  @Pointcut("execution(public hu.ikiss.gtd.dao.impl..*.*(..))")
-  public void methodsWithDBAccess() {
+  @Pointcut("execution(* hu.ikiss.gtd.server.dao.impl.*.setEm(..))")
+  public void daoSetEm() {
   }
 
-  @Before("methodsWithDBAccess")
-  public void setConnection(final JoinPoint joinPoint) {
-    this.taskDao.setEM(this.em);
-    this.projectDao.setEM(this.em);
+  @Pointcut("execution(* hu.ikiss.gtd.server.dao.impl.ProjectDAO.*(..)) && !daoSetEm()")
+  public void projectDAOMethodsWithDBAccess() {
+  }
+
+  @Before("projectDAOMethodsWithDBAccess()")
+  public void setProjectConnection(final JoinPoint joinPoint) {
+    this.projectDao.setEm();
+  }
+
+  @Before("taskDAOMethodsWithDBAccess()")
+  public void setTaskConnection(final JoinPoint joinPoint) {
+    this.taskDao.setEm();
+  }
+
+  @Pointcut("execution(* hu.ikiss.gtd.server.dao.impl.TaskDAO.*(..)) && !daoSetEm()")
+  public void taskDAOMethodsWithDBAccess() {
   }
 }

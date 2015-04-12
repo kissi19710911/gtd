@@ -6,6 +6,7 @@ import hu.ikiss.gtd.server.domain.Task;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,10 @@ public class TaskDAO implements hu.ikiss.gtd.dao.TaskDAO {
   private final CommonDAOimpl<TaskDTO, Task> commonDAO;
 
   @Autowired
-  private TaskConverter                      converter;
+  private DomainVsConverterTask              converter;
+
+  @PersistenceContext(name = "gtdDS")
+  private EntityManager                      em;
 
   public TaskDAO() {
     this.commonDAO = new CommonDAOimpl<TaskDTO, Task>(this.converter);
@@ -41,6 +45,12 @@ public class TaskDAO implements hu.ikiss.gtd.dao.TaskDAO {
   @Override
   public List<TaskDTO> findRelevant() {
     return this.commonDAO.findByQuery("Task.findRelevant");
+  }
+
+  @Override
+  public void setEm() {
+    this.commonDAO.setEm(this.em);
+
   }
 
   public void setEM(final EntityManager em) {

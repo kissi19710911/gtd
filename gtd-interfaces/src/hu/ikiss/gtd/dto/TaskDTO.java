@@ -8,13 +8,10 @@ import org.apache.commons.lang.builder.CompareToBuilder;
 
 public class TaskDTO implements Comparable<TaskDTO>, Serializable, DTO {
 
-  /**
-   *
-   */
   private static final long serialVersionUID = -5514408353162431151L;
   private Integer           id;
   private String            name;
-  private ProjectDTO   project;
+  private ProjectDTO        project;
 
   public TaskDTO() {
   }

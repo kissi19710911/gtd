@@ -1,7 +1,6 @@
 package hu.ikiss.gtd.server.business.impl;
 
 import hu.ikiss.gtd.businessinterface.TaskBusiness;
-import hu.ikiss.gtd.dao.TaskDAO;
 import hu.ikiss.gtd.dto.TaskDTO;
 
 import java.rmi.RemoteException;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TaskServices implements TaskBusiness {
   @Autowired
-  TaskDAO taskDao;
+  hu.ikiss.gtd.dao.TaskDAO taskDao;
 
   @Override
   public TaskDTO create(final TaskDTO dto) throws RemoteException {

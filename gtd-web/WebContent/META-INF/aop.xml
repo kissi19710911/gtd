@@ -2,13 +2,12 @@
 <aspectj>
 
     <weaver>
-        <!-- only weave classes in our application-specific packages -->
         <include within="hu.ikiss.gtd.dao.impl.*"/>
     </weaver>
 
     <aspects>
         <!-- weave in just this aspect -->
-        <aspect name="hu.ikiss.gtd.dao.impl.DbConnection"/>
+        <aspect name="hu.ikiss.gtd.server.dao.impl.DbConnection"/>
     </aspects>
 
 </aspectj>

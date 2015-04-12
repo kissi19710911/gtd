@@ -2,7 +2,6 @@ package hu.ikiss.gtd.server.business.impl;
 
 import hu.ikiss.gtd.businessinterface.ProjectBusiness;
 import hu.ikiss.gtd.dto.ProjectDTO;
-import hu.ikiss.gtd.server.dao.impl.ProjectDAO;
 
 import java.rmi.RemoteException;
 
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProjectServices implements ProjectBusiness {
   @Autowired
-  ProjectDAO projectDao;
+  hu.ikiss.gtd.dao.ProjectDAO projectDao;
 
   @Override
   public ProjectDTO create(final ProjectDTO dto) throws RemoteException {

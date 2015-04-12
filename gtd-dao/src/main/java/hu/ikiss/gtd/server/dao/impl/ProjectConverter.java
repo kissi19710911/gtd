@@ -1,13 +1,12 @@
 package hu.ikiss.gtd.server.dao.impl;
 
-import hu.ikiss.gtd.dao.common.DomainVSDtoConverter;
 import hu.ikiss.gtd.dto.ProjectDTO;
 import hu.ikiss.gtd.server.domain.Project;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProjectConverter implements DomainVSDtoConverter<ProjectDTO, Project> {
+public class ProjectConverter implements DomainVsConverterProject {
 
   @Override
   public Project toDomain(final ProjectDTO dto) {

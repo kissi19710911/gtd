@@ -11,16 +11,67 @@
 		<servlet-api.version>3.0.1</servlet-api.version>
 		<ehcache.version>2.8.1</ehcache.version>
 		<hibernate-validator.version>5.0.2.Final</hibernate-validator.version>
-		<hibernate-entity.version>4.3.7.Final</hibernate-entity.version>
+		<hibernate-entitymanager.version>4.3.0.Final</hibernate-entitymanager.version>
 		<spring.version>4.0.2.RELEASE</spring.version>
 		<spring-plugin-core.version>1.0.0.RELEASE</spring-plugin-core.version>
 		<spring-hateoas.version>0.9.0.RELEASE</spring-hateoas.version>
 		<spring-security.version>3.2.1.RELEASE</spring-security.version>
 		<aspectj.version>1.7.4</aspectj.version>
 		<tomcat-version>7.0.57</tomcat-version>
+		<persistence-api-version>1.0.2</persistence-api-version>
 	</properties>
-	
+
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
@@ -53,11 +104,19 @@
 			<artifactId>commons-lang</artifactId>
 		</dependency>
 
+		<!-- dependency> <groupId>javax.persistence</groupId> <artifactId>persistence-api</artifactId> 
+			<version>${persistence-api-version}</version> </dependency -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate-entitymanager.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>${hibernate-entity.version}</version>
+			<version>${hibernate-entitymanager.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -110,16 +169,10 @@
 				</excludes>
 			</resource>
 		</resources>
-   <!-- pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>properties-maven-plugin</artifactId>
-          <version>1.0-alpha-2</version>
-        </plugin>
-      </plugins>
-    </pluginManagement-->
- 		
+		<!-- pluginManagement> <plugins> <plugin> <groupId>org.codehaus.mojo</groupId> 
+			<artifactId>properties-maven-plugin</artifactId> <version>1.0-alpha-2</version> 
+			</plugin> </plugins> </pluginManagement -->
+
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>

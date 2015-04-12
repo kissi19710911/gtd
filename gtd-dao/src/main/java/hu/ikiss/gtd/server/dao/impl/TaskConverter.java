@@ -1,6 +1,5 @@
 package hu.ikiss.gtd.server.dao.impl;
 
-import hu.ikiss.gtd.dao.common.DomainVSDtoConverter;
 import hu.ikiss.gtd.dto.TaskDTO;
 import hu.ikiss.gtd.server.domain.Task;
 
@@ -8,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TaskConverter implements DomainVSDtoConverter<TaskDTO, Task> {
+public class TaskConverter implements DomainVsConverterTask {
 
 
   @Autowired
-  ProjectConverter projectConverter;
+  DomainVsConverterProject projectConverter;
 
   @Override
   public Task toDomain(final TaskDTO dto) {
