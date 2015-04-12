@@ -33,11 +33,6 @@
 	</bean>
 	<bean id="taskDAO" class="hu.ikiss.gtd.server.dao.impl.TaskDAO">
 	</bean>
-	<!--bean id="entityManager"
-		class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean-->
-	<!-- jee:jndi-lookup id="entityManagerFactory" jndi-name="java:comp/env/jdbc/gtdDB" /-->
 	
    <tx:annotation-driven/>
 
