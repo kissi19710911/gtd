@@ -1,18 +1,17 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
-<%@taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" tagdir="c"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
+<head>
+<title>Tasks</title>
+</head>
 <body>
 <table>
-  <c:forEach items="${task}" var="item">
+  <c:forEach var="task" items="${tasks}">
     <tr>
-      <td><c:out value="${item.project.name}" /></td>
-      <td><c:out value="${item.name}" /></td>
-      <td><form><input type = "hidden" name = "id" value = "x" /> <input type="button"/></form></td>
+      <td><c:out value="${task.project.name}" /></td>
+      <td><c:out value="${task.name}" /></td>
+      <td><form><input type = "hidden" name = "model.task.id" value = "x" /> <input type="button"/></form></td>
     </tr>
   </c:forEach>
 </table>
-</body>
-</html>
+</body></html>

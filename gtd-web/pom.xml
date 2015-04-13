@@ -137,20 +137,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>taglibs</groupId>
-			<artifactId>c</artifactId>
-			<version>1.1.2</version>
-			<type>tld</type>
-		</dependency>
-
-		<dependency>
-			<groupId>taglibs</groupId>
-			<artifactId>fmt</artifactId>
-			<version>1.1.2</version>
-			<type>tld</type>
-		</dependency>
-
-		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
 			<version>2.2.2</version>

@@ -1,7 +1,6 @@
 package hu.ikiss.gtd.controller;
 
 import hu.ikiss.gtd.businessinterface.TaskBusiness;
-import hu.ikiss.gtd.dto.TaskDTO;
 
 import java.rmi.RemoteException;
 
@@ -23,9 +22,7 @@ public class Home {
   public String tasks(final ModelMap model) {
 
     try {
-      for (final TaskDTO task : this.taskService.findRelevant()) {
-        model.addAttribute("task", task);
-      }
+      model.addAttribute/* put */("tasks", this.taskService.findRelevant());
     } catch (final RemoteException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
