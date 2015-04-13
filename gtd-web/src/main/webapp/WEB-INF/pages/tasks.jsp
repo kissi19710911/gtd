@@ -2,7 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
-<link href="<c:url value="/resources/stylesheet.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/stylesheet2.css" />" rel="stylesheet">
 <title>Tasks</title>
 </head>
 <body>

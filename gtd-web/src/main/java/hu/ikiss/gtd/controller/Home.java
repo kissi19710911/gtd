@@ -22,7 +22,7 @@ public class Home {
   public String tasks(final ModelMap model) {
 
     try {
-      model.addAttribute/* put */("tasks", this.taskService.findRelevant());
+      model.addAttribute("tasks", this.taskService.findRelevant());
     } catch (final RemoteException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

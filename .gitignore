@@ -8,3 +8,4 @@
 Servers/
 *.gwt-log*
 gtd-webGwt/war/*
+Servers/Tomcat v7.0 Server at localhost-config/server.xml
