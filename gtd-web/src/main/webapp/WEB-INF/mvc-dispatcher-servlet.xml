@@ -1,8 +1,11 @@
 <?xml version="1.0"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
-	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
 
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
@@ -14,10 +17,16 @@
  http://www.springframework.org/schema/tx 
  http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 http://www.springframework.org/schema/aop  
- http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+ http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
 	<context:component-scan base-package="hu.ikiss.gtd" />
 	<context:annotation-config />
+  <mvc:resources mapping="/resources/**" location="/resources/" />
+ 
+ <mvc:annotation-driven />
+ 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
@@ -27,11 +36,8 @@ http://www.springframework.org/schema/aop
 			<value>.jsp</value>
 		</property>
 	</bean>
-	<bean class="hu.ikiss.gtd.controller.Startup">
-	</bean>
-	<bean class="hu.ikiss.gtd.controller.Home">
-	</bean>
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+
+ 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
