@@ -6,9 +6,9 @@ public interface DAO<T> {
 
   ProjectDTO create(T dto);
 
-  void deleteByPrimaryKey(Integer id);
+  void deleteByPrimaryKey(Long id);
 
-  T findByPrimaryKey(Integer id);
+  T findByPrimaryKey(Long id);
 
   ProjectDTO update(T DTO);
 

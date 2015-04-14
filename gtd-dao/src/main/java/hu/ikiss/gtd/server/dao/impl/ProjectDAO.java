@@ -31,13 +31,13 @@ public class ProjectDAO implements hu.ikiss.gtd.dao.ProjectDAO {
 
 
   @Override
-  public void deleteByPrimaryKey(final Integer id) {
+  public void deleteByPrimaryKey(final Long id) {
     this.commonDAO.deleteByPrimaryKey(id, "Project.deleteByPrimaryKey");
 
   }
 
   @Override
-  public ProjectDTO findByPrimaryKey(final Integer id) {
+  public ProjectDTO findByPrimaryKey(final Long id) {
     return this.commonDAO.findByPrimaryKey(id, "Project.findByPrimaryKey");
   }
 

@@ -9,7 +9,7 @@ import org.apache.commons.lang.builder.CompareToBuilder;
 public class ProjectDTO implements Comparable<ProjectDTO>, Serializable, DTO {
 
   private static final long serialVersionUID = -5514408353162431151L;
-  private Integer           id;
+  private Long              id;
   private String            name;
   private ProjectDTO        project;
 
@@ -21,7 +21,7 @@ public class ProjectDTO implements Comparable<ProjectDTO>, Serializable, DTO {
     return new CompareToBuilder().append(this.name, o.name).toComparison();
   }
 
-  public Integer getId() {
+  public Long getId() {
     return this.id;
   }
 
@@ -33,7 +33,7 @@ public class ProjectDTO implements Comparable<ProjectDTO>, Serializable, DTO {
     return this.project;
   }
 
-  public void setId(final Integer id) {
+  public void setId(final Long id) {
     this.id = id;
   }
 

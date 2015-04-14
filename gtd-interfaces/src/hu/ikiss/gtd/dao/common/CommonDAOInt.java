@@ -9,9 +9,9 @@ import java.util.Collection;
 public interface CommonDAOInt<T extends DTO> {
   T create(T DTO);
 
-  void deleteByPrimaryKey(Integer id, String namedQuery);
+  void deleteByPrimaryKey(Long id, String namedQuery);
 
-  T findByPrimaryKey(Integer id, String namedQuery);
+  T findByPrimaryKey(Long id, String namedQuery);
 
   Collection<T> findByQuery(String namedQuery, String... param);
 

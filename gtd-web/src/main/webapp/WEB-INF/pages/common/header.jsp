@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="US-ASCII" ?>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <html>
 <head>
 <spring:url value="https://ssl.gstatic.com/docs/script/css/add-ons1.css" var="resourceUrl"/>

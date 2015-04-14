@@ -7,9 +7,9 @@ import java.util.List;
 public interface TaskDAO {
   TaskDTO create(TaskDTO dto);
 
-  void deleteByPrimaryKey(Integer id);
+  void deleteByPrimaryKey(Long id);
 
-  TaskDTO findByPrimaryKey(Integer id);
+  TaskDTO findByPrimaryKey(Long id);
 
   public List<TaskDTO> findRelevant();
 

@@ -15,17 +15,17 @@
 						<c:out value="${task.name}" />
 					</div></td>
 				<td><div class="inline form-group">
-						<form>
-							<input type="hidden" name="task.id" value="${task.id}" />
-							<button class="action">Edit</button>
-						</form>
+						<form:form method="GET" action="editTask">
+							<input type="hidden" name="taskId" value="${task.id}" />
+							<button type="submit" class="action">Edit</button>
+						</form:form>
 					</div></td>
 			</tr>
 		</c:forEach>
 	</table>
 	<div class="block">
-		<button>New Project</button>
-		<button class="blue">New Task</button>
+		<button type="submit" name="newProject">New Project</button>
+		<button type="submit" name="newTask" class="blue">New Task</button>
 	</div>
 </div>
 <%@include file="common/footer.jsp"%>

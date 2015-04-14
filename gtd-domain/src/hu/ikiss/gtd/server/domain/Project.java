@@ -25,13 +25,13 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 @Entity
 @Table(name = "PROJECTS")
 @NamedQueries({
-    @NamedQuery(name = "Project.findByPrimaryKey",
-        query = "select m from Project m where m.id = :id"),
-    @NamedQuery(name = "Project.deleteByPrimaryKey", query = "delete from Project where id = :id")})
+  @NamedQuery(name = "Project.findByPrimaryKey",
+      query = "select m from Project m where m.id = :id"),
+      @NamedQuery(name = "Project.deleteByPrimaryKey", query = "delete from Project where id = :id")})
 public class Project implements Serializable, Comparable<Project>, Domain {
 
   private static final long serialVersionUID = 1L;
-  private Integer           id;
+  private Long              id;
   private String            name;
 
   public Project() {
@@ -57,7 +57,7 @@ public class Project implements Serializable, Comparable<Project>, Domain {
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROJECTS_SEQ")
   @SequenceGenerator(name = "PROJECTS_SEQ", sequenceName = "PROJECTS_SEQ", allocationSize = 1)
   @Column(name = "ID")
-  public Integer getId() {
+  public Long getId() {
     return this.id;
   }
 
@@ -71,7 +71,7 @@ public class Project implements Serializable, Comparable<Project>, Domain {
     return new HashCodeBuilder().append(this.name).toHashCode();
   }
 
-  public void setId(final Integer id) {
+  public void setId(final Long id) {
     this.id = id;
   }
 

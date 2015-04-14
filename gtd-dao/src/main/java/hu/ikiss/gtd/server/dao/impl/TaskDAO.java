@@ -32,13 +32,13 @@ public class TaskDAO implements hu.ikiss.gtd.dao.TaskDAO {
   }
 
   @Override
-  public void deleteByPrimaryKey(final Integer id) {
+  public void deleteByPrimaryKey(final Long id) {
     this.commonDAO.deleteByPrimaryKey(id, "Task.deleteByPrimaryKey");
 
   }
 
   @Override
-  public TaskDTO findByPrimaryKey(final Integer id) {
+  public TaskDTO findByPrimaryKey(final Long id) {
     return this.commonDAO.findByPrimaryKey(id, "Task.findByPrimaryKey");
   }
 

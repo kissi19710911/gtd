@@ -10,6 +10,8 @@ public interface TaskBusiness {
 
   TaskDTO create(TaskDTO dto) throws RemoteException;
 
+  TaskDTO findById(Long taskId) throws RemoteException;
+
   Collection<TaskDTO> findRelevant() throws RemoteException;
 
 }

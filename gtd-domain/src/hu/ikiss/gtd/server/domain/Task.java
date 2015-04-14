@@ -27,18 +27,18 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 @Entity
 @Table(name = "TASKS")
 @NamedQueries({
-    @NamedQuery(name = "Task.findByPrimaryKey", query = "select m from Task m where m.id = :id"),
-    @NamedQuery(name = "Task.deleteByPrimaryKey", query = "delete from Task where id = :id"),
-    @NamedQuery(name = "Task.findRelevant", query = "select t from Task t") // TODO add relevant
-// param
-// @NamedQuery(name = "Task.insert", query = "insert into Task values (:task)"),
-// @NamedQuery(name = "Task.updateNameByPrimaryKey", query =
-// "update Task set name = :name where id = :id")
+  @NamedQuery(name = "Task.findByPrimaryKey", query = "select m from Task m where m.id = :id"),
+  @NamedQuery(name = "Task.deleteByPrimaryKey", query = "delete from Task where id = :id"),
+  @NamedQuery(name = "Task.findRelevant", query = "select t from Task t") // TODO add relevant
+  // param
+  // @NamedQuery(name = "Task.insert", query = "insert into Task values (:task)"),
+  // @NamedQuery(name = "Task.updateNameByPrimaryKey", query =
+  // "update Task set name = :name where id = :id")
 })
 public class Task implements Serializable, Comparable<Task>, Domain {
 
   private static final long serialVersionUID = 1L;
-  private Integer           id;
+  private Long              id;
   private String            name;
   private Project           project;
 
@@ -69,7 +69,7 @@ public class Task implements Serializable, Comparable<Task>, Domain {
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TASKS_SEQ")
   @SequenceGenerator(name = "TASKS_SEQ", sequenceName = "TASKS_SEQ", allocationSize = 1)
   @Column(name = "ID")
-  public Integer getId() {
+  public Long getId() {
     return this.id;
   }
 
@@ -90,7 +90,7 @@ public class Task implements Serializable, Comparable<Task>, Domain {
     return new HashCodeBuilder().append(this.name).append(this.project).toHashCode();
   }
 
-  public void setId(final Integer id) {
+  public void setId(final Long id) {
     this.id = id;
   }
 

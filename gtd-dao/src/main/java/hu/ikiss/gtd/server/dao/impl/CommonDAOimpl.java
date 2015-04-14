@@ -27,14 +27,14 @@ public class CommonDAOimpl<T extends DTO, L extends Domain> implements CommonDAO
   }
 
   @Override
-  public void deleteByPrimaryKey(final Integer id, final String namedQuery) {
+  public void deleteByPrimaryKey(final Long id, final String namedQuery) {
     final Query query = this.em.createNamedQuery(namedQuery);
     query.setParameter("id", id);
     query.executeUpdate();
   }
 
   @Override
-  public T findByPrimaryKey(final Integer id, final String namedQuery) {
+  public T findByPrimaryKey(final Long id, final String namedQuery) {
     final Query query = this.em.createNamedQuery(namedQuery);
     query.setParameter("id", id);
     final L queryRes = (L) query.getSingleResult();
