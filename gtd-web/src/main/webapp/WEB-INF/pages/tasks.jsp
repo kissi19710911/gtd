@@ -1,12 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<html>
-<head>
-<spring:url value="/resources/stylesheet.css" var="resourceUrl"/>
-<link media="screen" rel="stylesheet" href="${resourceUrl}" type="text/css" />
-<title>Tasks</title>
-</head>
-<body>
+<%@include file="common/header.jsp" %>
 	<table class="listing">
 		<tr>
 			<th>Project</th>
@@ -25,5 +17,5 @@
 			</tr>
 		</c:forEach>
 	</table>
-</body>
-</html>
+
+<%@include file="common/footer.jsp" %>
