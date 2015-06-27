@@ -2,9 +2,10 @@ package hu.ikiss.gtd.server.business.impl;
 
 import hu.ikiss.gtd.businessinterface.TaskBusiness;
 import hu.ikiss.gtd.dto.TaskDTO;
+import hu.ikiss.gtd.dto.TasksDTO;
 
 import java.rmi.RemoteException;
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,13 +27,25 @@ public class TaskServices implements TaskBusiness {
   }
 
   @Override
+  public void delete(final TaskDTO taskDTO) throws RemoteException {
+    this.taskDao.deleteByPrimaryKey(taskDTO.getId());
+  }
+
+  @Override
   public TaskDTO findById(final Long taskId) throws RemoteException {
     return this.taskDao.findByPrimaryKey(taskId);
   }
 
   @Override
-  public Collection<TaskDTO> findRelevant() throws RemoteException {
-    final Collection<TaskDTO> res = this.taskDao.findRelevant();
-    return res;
+  public TasksDTO findRelevant() throws RemoteException {
+    final List<TaskDTO> res = this.taskDao.findRelevant();
+    final TasksDTO tasks = new TasksDTO();
+    tasks.setTasks(res);
+    return tasks;
+  }
+
+  @Override
+  public TaskDTO update(final TaskDTO taskDTO) throws RemoteException {
+    return this.taskDao.update(taskDTO);
   }
 }

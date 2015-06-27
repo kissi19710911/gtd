@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 public class CommonDAOimpl<T extends DTO, L extends Domain> implements CommonDAOInt<T> {
 
@@ -18,7 +19,9 @@ public class CommonDAOimpl<T extends DTO, L extends Domain> implements CommonDAO
 
   private EntityManager      em;
 
+
   @Override
+  @Transactional
   public T create(final T DTO) {
 
     final L domain = this.converter.toDomain(DTO);
@@ -27,6 +30,7 @@ public class CommonDAOimpl<T extends DTO, L extends Domain> implements CommonDAO
   }
 
   @Override
+  @Transactional
   public void deleteByPrimaryKey(final Long id, final String namedQuery) {
     final Query query = this.em.createNamedQuery(namedQuery);
     query.setParameter("id", id);
@@ -67,6 +71,7 @@ public class CommonDAOimpl<T extends DTO, L extends Domain> implements CommonDAO
   }
 
   @Override
+  @Transactional
   public T update(final T DTO) {
     L domain = this.converter.toDomain(DTO);
     domain = this.em.merge(domain);

@@ -1,4 +1,5 @@
 <%@include file="common/header.jsp"%>
+<%@ page session="true"%>
 <div class="inline form-group">
 	<table>
 		<tr>
@@ -6,21 +7,21 @@
 			<th><div class="form-group">Task</div></th>
 			<th><div class="form-group"></div></th>
 		</tr>
-		<c:forEach var="task" items="${tasks}">
-			<tr>
-				<td><div class="inline form-group">
-						<c:out value="${task.project.name}" />
-					</div></td>
-				<td><div class="inline form-group">
-						<c:out value="${task.name}" />
-					</div></td>
-				<td><div class="inline form-group">
-						<form:form method="GET" action="editTask">
-							<input type="hidden" name="taskId" value="${task.id}" />
+		<c:forEach var="task" items="${relevantTasks.tasks}">
+			<c:url var="editUrl" value="/editTask" />
+			<form:form method="GET" name="taskForm" action="${editUrl}" modelAttribute="task" onSubmit="return setSessionAttribute()">
+				<tr>
+					<td><div class="inline form-group">
+							<c:out value="${task.project.name}" />
+						</div></td>
+					<td><div class="inline form-group">
+							<c:out value="${task.name}" />
+						</div></td>
+					<td><div class="inline form-group">
 							<button type="submit" class="action">Edit</button>
-						</form:form>
-					</div></td>
-			</tr>
+						</div></td>
+				</tr>
+			</form:form>
 		</c:forEach>
 	</table>
 	<div class="block">

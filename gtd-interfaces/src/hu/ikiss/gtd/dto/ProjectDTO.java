@@ -5,7 +5,11 @@ import hu.ikiss.gtd.local.DTO;
 import java.io.Serializable;
 
 import org.apache.commons.lang.builder.CompareToBuilder;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+@Component
+@Scope("session")
 public class ProjectDTO implements Comparable<ProjectDTO>, Serializable, DTO {
 
   private static final long serialVersionUID = -5514408353162431151L;
